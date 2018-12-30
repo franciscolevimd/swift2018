@@ -90,3 +90,32 @@ case "B":
 default:
     print("Es otro banco")
 }
+
+// Clase 011. For y While
+
+var total: Float = 0
+
+for transaction in transactions
+{
+    total += (transaction * 100)
+}
+
+print(total)
+print(accountTotal)
+accountTotal -= total
+print(accountTotal)
+
+var total2: Float = 0
+
+for key in transactionsDict.keys
+{
+    for transaction in transactionsDict[key] ?? [] // Como es un optional hay que indicar que si no hay un array devolver uno vacío.
+    {
+        total2 += transaction
+    }
+}
+
+print(transactionsDict)
+print(total2)
+
+
