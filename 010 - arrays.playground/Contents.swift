@@ -118,4 +118,31 @@ for key in transactionsDict.keys
 print(transactionsDict)
 print(total2)
 
+// Clase 012. Opcionales, Guard, If guard
 
+// Un optional es un valor que puede exsitri en cualquier momento.
+var nombre: String? = nil // Se declara con un ? y por default vale nil.
+
+//print(nombre) // Marca un warning, y lo que se puede hacer es aplicar que hacer en caso de que este valor sea nil -->
+
+print(nombre ?? "El nombre es vacío")
+
+// Cuando el optional tiene un valor, osea que no es nil, este se considera literalmente como un objeto Optional.
+nombre = "Junchito"
+print(nombre)
+// Lo cual se puede solucionar usando !, siempre y cuando el valor no sea nil.
+print(nombre!) // Forced unwrapping
+
+nombre = nil
+
+if let nombre = nombre
+{
+    print(nombre)
+}
+//nombre = nil
+//
+//guard let nombre = nombre else
+//{
+//    print("no hay")
+//    return
+//}
