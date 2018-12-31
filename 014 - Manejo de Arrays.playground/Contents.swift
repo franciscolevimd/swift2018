@@ -164,3 +164,16 @@ transactions.removeAll(where : {
 })
 
 print(transactions)
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+
+
+
+// Reto clase 014
+print(transactionsDict)
+
+var totalReto: Float = 0
+transactionsDict.forEach { totalReto += $1.reduce(0.0, +) }
+print(totalReto)
+
+print( transactionsDict.reduce (0.0, {$0 + $1.value.reduce(0.0, +)}) )
+
