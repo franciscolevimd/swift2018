@@ -109,7 +109,7 @@ var total2: Float = 0
 
 for key in transactionsDict.keys
 {
-    for transaction in transactionsDict[key] ?? [] // Como es un optional hay que indicar que si no hay un array devolver uno vacío.
+    for transaction in transactionsDict[key] ?? [] // Como es un optional hay que indicar que si no hay un array devolver uno vacío. Unwrapping
     {
         total2 += transaction
     }
@@ -146,3 +146,22 @@ if let nombre = nombre
 //    print("no hay")
 //    return
 //}
+
+
+
+
+// Clase 013. For Where
+
+total2 = 0
+
+for key in transactionsDict.keys
+{
+    for transaction in transactionsDict[key]! where transaction < 20 // Forzarlo con !
+    {
+        total2 += transaction
+    }
+}
+
+print(transactionsDict)
+print(total2)
+
