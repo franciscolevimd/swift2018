@@ -234,48 +234,68 @@ var transactionsDict2: [String: [Float]] = [
 // Clase 017: Tuplas
 // Retornar varios valores.
 
-func totalAccount( forTransactions transactions: [String: [Float]] ) -> (Float, Int) // Retorno de mas de un valor
+//func totalAccount( forTransactions transactions: [String: [Float]] ) -> (Float, Int) // Retorno de mas de un valor
+//{
+//    var total: Float = 0
+//
+//    for key in transactions.keys
+//    {
+//        let array = transactions[key]!
+//        total += array.reduce(0.0, +)
+//    }
+//
+//    return (total, transactions.count)
+//}
+
+//let  totalFunc = totalAccount(forTransactions: transactionsDict)
+//let totalFunc2 = totalAccount(forTransactions: transactionsDict2)
+//
+//print(totalFunc) // Los valores retornados se agrupan
+//print(totalFunc2)
+//print(totalFunc.0, totalFunc.1)
+
+
+// Clase 018: discartableResult
+// Agregar transacciones de una forma mas sencilla.
+
+// En este caso no estamoa evaluando si se puedo agregar o nu  una transacción
+//func addTransaction( transactionValue value: Float) -> Bool
+//{
+//    if (accountTotal - value) < 0
+//    {
+//        return false
+//    }
+//    accountTotal -= value
+//    transactions.append(value)
+//    return true
+//}
+
+
+// Hacerlo de forma correcta: con la palabra reservada antes de la función, para que el compilador entienda que no necesitamos tener esa variable en el momento de usarla.
+@discardableResult
+//func addTransaction( transactionValue value: Float) -> Bool
+//func addTransaction( transactionValue value: Float = 10) -> Bool // Un valor default en el parámetro - 1
+//func addTransaction( transactionValue value: Float? = nil) -> Bool // Valor opcional que es nil - 2
+func addTransaction( transactionValue value: Float?) -> Bool // Valor opcional sin valor default - 3
 {
-    var total: Float = 0
-
-    for key in transactions.keys
+    // Optional unwrapping si el valor es nil; inverso a: if let value = value { // Que hacer si no es nil }
+    guard let value = value else // Dentro de los corchetes lo que sucederá si no se realiza la asignación.
     {
-        let array = transactions[key]!
-        total += array.reduce(0.0, +)
+        return false
     }
-
-    return (total, transactions.count)
+    
+    // value al llegar a este punto ya existe y deja de ser opcional,
+    if (accountTotal - value) < 0
+    {
+        return false
+    }
+    accountTotal -= value
+    transactions.append(value)
+    return true
 }
 
-let  totalFunc = totalAccount(forTransactions: transactionsDict)
-let totalFunc2 = totalAccount(forTransactions: transactionsDict2)
-
-print(totalFunc) // Los valores retornados se agrupan
-print(totalFunc2)
-print(totalFunc.0, totalFunc.1)
-
-// Entendiendo las tuplas
-//let name2 = ("Andrés", "El que te visita cada mes")
-//print(name2.0)
-
-let name2 = (name: "Andrés", lastName: "El que te visita cada mes")
-print(name2.name)
-print(name2.lastName)
-
-// ¿En que puede ser útil una tupla?
-var a = 1
-var b = 2
-//var c = 0
-//
-//c = a
-//a = b
-//b = c
-//
-//print(a, b)
-
-// Usando tuplas
-(a, b) = (b, a)
-print(a, b)
-
-// Elemental recordar que hay que saber diferenciar entre clases, estructuras y tuplas.
+//let result = addTransaction(transactionValue: 30) // Ya que necesriamente no necesitamos almacenar el resultado.
+//addTransaction(transactionValue: 30)
+//addTransaction() // - 1, - 2
+addTransaction(transactionValue: nil) // - 3
 
