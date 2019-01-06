@@ -171,9 +171,46 @@ print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 // Reto clase 014
 print(transactionsDict)
 
-var totalReto: Float = 0
-transactionsDict.forEach { totalReto += $1.reduce(0.0, +) }
-print(totalReto)
+//var totalReto: Float = 0
+//transactionsDict.forEach { totalReto += $1.reduce(0.0, +) }
+//print(totalReto)
 
-print( transactionsDict.reduce (0.0, {$0 + $1.value.reduce(0.0, +)}) )
+// print( transactionsDict.reduce (0.0, {$0 + $1.value.reduce(0.0, +)}) )
+
+//transactions.reduce(<#T##initialResult: Result##Result#>, <#T##nextPartialResult: (Result, Float) throws -> Result##(Result, Float) throws -> Result#>);
+//transactionsDict.reduce(<#T##initialResult: Result##Result#>, <#T##nextPartialResult: (Result, (key: String, value: [Float])) throws -> Result##(Result, (key: String, value: [Float])) throws -> Result#>);
+//
+//transactions.reduce(0.0) { (result, element) -> Float in
+//    //
+//}
+
+//var totalPlus = transactionsDict.reduce(0.0) { (result, element) -> Float in
+//
+//    return result + element.value.reduce(0.0, { (result2, element2) -> Float in
+//        return result2 + element2
+//    })
+//}
+//print(totalPlus)
+
+//var totalPlus2 = transactionsDict.reduce(0.0) {
+//
+//    return $0 + $1.value.reduce(0.0, { (result2, element2) -> Float in
+//        return result2 + element2
+//    })
+//
+//}
+//print(totalPlus2)
+
+//var totalPlus3 = transactionsDict.reduce(0.0) {
+//
+//    return $0 + $1.value.reduce(0.0, {
+//        return $0 + $1
+//    })
+//}
+//print(totalPlus3)
+
+//var totalPlus4 = transactionsDict.reduce(0.0) { $0 + $1.value.reduce(0.0, { $0 + $1 }) }
+//print(totalPlus4)
+
+print( transactionsDict.reduce(0.0) { $0 + $1.value.reduce(0.0, +) } )
 
