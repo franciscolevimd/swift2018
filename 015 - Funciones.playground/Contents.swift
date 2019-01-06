@@ -201,22 +201,22 @@ print( transactionsDict.reduce(0.0) { $0 + $1.value.reduce(0.0, +) } )
 //func totalAccount( transactions: [String: [Float]] ) // Forma tradicional - 1
 //func totalAccount( forTransactions transactions: [String: [Float]] ) // forTransactions es el nombre externo, mientras transactions será el nombre interno - 2
 //func totalAccount( _ transactions: [String: [Float]] ) // Guin al piso - 3
-func totalAccount( forTransactions transactions: [String: [Float]] ) -> Float // Especidicando el valor a retorar - 4
-{
-    var total: Float = 0
-    
-    for key in transactions.keys
-    {
-        let array = transactions[key]!
-        total += array.reduce(0.0, +)
-    }
-//    print(total) // - 1, - 2, - 3
-    return total // - 4
-}
-
-//totalAccount(transactions: transactionsDict) // - 1
-//totalAccount(forTransactions: transactionsDict) // - 2
-//totalAccount(transactionsDict) // - 3
+//func totalAccount( forTransactions transactions: [String: [Float]] ) -> Float // Especidicando el valor a retorar - 4
+//{
+//    var total: Float = 0
+//
+//    for key in transactions.keys
+//    {
+//        let array = transactions[key]!
+//        total += array.reduce(0.0, +)
+//    }
+////    print(total) // - 1, - 2, - 3
+//    return total // - 4
+//}
+//
+////totalAccount(transactions: transactionsDict) // - 1
+////totalAccount(forTransactions: transactionsDict) // - 2
+////totalAccount(transactionsDict) // - 3
 
 var transactionsDict2: [String: [Float]] = [
     "2nov": [1000],
@@ -224,15 +224,58 @@ var transactionsDict2: [String: [Float]] = [
     "4nov": [1000]
 ]
 
+//// - 4
+//let  totalFunc = totalAccount(forTransactions: transactionsDict)
+//let totalFunc2 = totalAccount(forTransactions: transactionsDict2)
+//
+//print(totalFunc)
+//print(totalFunc2)
 
-// - 4
+// Clase 017: Tuplas
+// Retornar varios valores.
+
+func totalAccount( forTransactions transactions: [String: [Float]] ) -> (Float, Int) // Retorno de mas de un valor
+{
+    var total: Float = 0
+
+    for key in transactions.keys
+    {
+        let array = transactions[key]!
+        total += array.reduce(0.0, +)
+    }
+
+    return (total, transactions.count)
+}
+
 let  totalFunc = totalAccount(forTransactions: transactionsDict)
 let totalFunc2 = totalAccount(forTransactions: transactionsDict2)
 
-print(totalFunc)
+print(totalFunc) // Los valores retornados se agrupan
 print(totalFunc2)
+print(totalFunc.0, totalFunc.1)
 
+// Entendiendo las tuplas
+//let name2 = ("Andrés", "El que te visita cada mes")
+//print(name2.0)
 
+let name2 = (name: "Andrés", lastName: "El que te visita cada mes")
+print(name2.name)
+print(name2.lastName)
 
+// ¿En que puede ser útil una tupla?
+var a = 1
+var b = 2
+//var c = 0
+//
+//c = a
+//a = b
+//b = c
+//
+//print(a, b)
 
+// Usando tuplas
+(a, b) = (b, a)
+print(a, b)
+
+// Elemental recordar que hay que saber diferenciar entre clases, estructuras y tuplas.
 
