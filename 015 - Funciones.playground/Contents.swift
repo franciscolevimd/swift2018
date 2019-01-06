@@ -176,22 +176,63 @@ print( transactionsDict.reduce(0.0) { $0 + $1.value.reduce(0.0, +) } )
 
 // Clase 015: Definicion
 
-/* Cápsulas de código que nos permiten reutilizar partes de código que ya hemos hecho con funcionalidades muy específicas, y agruparlos dentro de un elemento que podemos estar llamando constantemente.
- 
- - Eviatmos repetir código.
- */
- 
- func totalAccount()
- {
+///* Cápsulas de código que nos permiten reutilizar partes de código que ya hemos hecho con funcionalidades muy específicas, y agruparlos dentro de un elemento que podemos estar llamando constantemente.
+//
+// - Eviatmos repetir código.
+// */
+//
+// func totalAccount()
+// {
+//    var total: Float = 0
+//
+//    for key in transactionsDict.keys
+//    {
+//        let array = transactionsDict[key]!
+//        total += array.reduce(0.0, +)
+//    }
+//    print(total)
+//}
+//
+//totalAccount()
+
+// Clase 016: Parámetros en las funciones
+
+
+//func totalAccount( transactions: [String: [Float]] ) // Forma tradicional - 1
+//func totalAccount( forTransactions transactions: [String: [Float]] ) // forTransactions es el nombre externo, mientras transactions será el nombre interno - 2
+//func totalAccount( _ transactions: [String: [Float]] ) // Guin al piso - 3
+func totalAccount( forTransactions transactions: [String: [Float]] ) -> Float // Especidicando el valor a retorar - 4
+{
     var total: Float = 0
     
-    for key in transactionsDict.keys
+    for key in transactions.keys
     {
-        let array = transactionsDict[key]!
+        let array = transactions[key]!
         total += array.reduce(0.0, +)
     }
-    print(total)
+//    print(total) // - 1, - 2, - 3
+    return total // - 4
 }
 
-totalAccount()
+//totalAccount(transactions: transactionsDict) // - 1
+//totalAccount(forTransactions: transactionsDict) // - 2
+//totalAccount(transactionsDict) // - 3
+
+var transactionsDict2: [String: [Float]] = [
+    "2nov": [1000],
+    "3nov": [1000],
+    "4nov": [1000]
+]
+
+
+// - 4
+let  totalFunc = totalAccount(forTransactions: transactionsDict)
+let totalFunc2 = totalAccount(forTransactions: transactionsDict2)
+
+print(totalFunc)
+print(totalFunc2)
+
+
+
+
 
